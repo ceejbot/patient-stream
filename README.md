@@ -14,7 +14,6 @@ var fs = require('fs'),
     Request = require('request'),
     Teeable = require('teeable-stream');
 
-var tee = new Teeable(2);
 var input = Request.get('http://placekitten.com/400/400');
 input.pause(); // required
 var out1 = new fs.createWriteStream('kitten_copy1.jpg');
@@ -24,6 +23,11 @@ tee.on('end', function()
 {
     // do something with the two lovely kitten jpgs
 });
+
+var tee = new Teeable(2);
+input.pipe(tee);
+tee.pipe(out1);
+tee.pipe(out2);
 ```
 
 ## API
