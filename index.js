@@ -4,7 +4,7 @@ var
     util   = require('util')
     ;
 
-var TeeableStream = module.exports = function TeeableStream(readers)
+var PatientStream = module.exports = function PatientStream(readers)
 {
     assert(readers && toString.call(readers) === '[object Number]', 'you must pass a number of readers to expect');
     stream.PassThrough.call(this);
@@ -15,14 +15,14 @@ var TeeableStream = module.exports = function TeeableStream(readers)
     this.originalPipe = this.pipe;
     this.pipe = this.pipeAndCount;
 };
-util.inherits(TeeableStream, stream.PassThrough);
+util.inherits(PatientStream, stream.PassThrough);
 
-TeeableStream.prototype.input = null;
-TeeableStream.prototype.expected = 0;
-TeeableStream.prototype.teed = 0;
-TeeableStream.prototype.closed = 0;
+PatientStream.prototype.input = null;
+PatientStream.prototype.expected = 0;
+PatientStream.prototype.teed = 0;
+PatientStream.prototype.closed = 0;
 
-TeeableStream.prototype.pipeAndCount = function pipeAndCount(output)
+PatientStream.prototype.pipeAndCount = function pipeAndCount(output)
 {
     this.teed++;
     output.on('finish', this.onFinish.bind(this));
@@ -31,14 +31,14 @@ TeeableStream.prototype.pipeAndCount = function pipeAndCount(output)
         this.input.resume();
 };
 
-TeeableStream.prototype.onPipe = function onPipe(input)
+PatientStream.prototype.onPipe = function onPipe(input)
 {
     this.input = input;
     if (this.teed < this.expected)
         input.pause();
 };
 
-TeeableStream.prototype.onFinish = function onClose()
+PatientStream.prototype.onFinish = function onClose()
 {
     if (++this.closed === this.teed)
         this.end();

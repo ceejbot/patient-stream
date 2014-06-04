@@ -1,10 +1,10 @@
 {
-  "name": "teeable-stream",
-  "description": "a pass-through stream that tees itself",
+  "name": "patient-stream",
+  "description": "a pass-through stream that pauses while you pipe",
   "version": "0.0.0",
   "author": "C J Silverio",
   "bugs": {
-    "url": "https://github.com/ceejbot/teeable-stream/issues"
+    "url": "https://github.com/ceejbot/patient-stream/issues"
   },
   "dependencies": {
     "readable-stream": "^1.0.27-1"
@@ -22,7 +22,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ceejbot/teeable-stream.git"
+    "url": "git://github.com/ceejbot/patient-stream.git"
   },
   "scripts": {
     "test": "lab -v -c -t 90 test.js"

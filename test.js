@@ -9,7 +9,7 @@ var
     fs       = require('fs'),
     Request  = require('request'),
     stream   = require('readable-stream'),
-    Teeable  = require('./index'),
+    Patient  = require('./index'),
     util     = require('util')
     ;
 
@@ -42,14 +42,14 @@ describe('TeeableStream', function()
 {
     it('demands a number in its constructor', function(done)
     {
-        function shouldThrow() { return new Teeable(); }
+        function shouldThrow() { return new Patient(); }
         shouldThrow.must.throw(/number of readers/);
         done();
     });
 
     it('can be constructed', function(done)
     {
-        var t = new Teeable(1);
+        var t = new Patient(1);
         t.must.be.an.object();
         done();
     });
@@ -57,7 +57,7 @@ describe('TeeableStream', function()
 
     it('inherits from PassThrough', function(done)
     {
-        var t = new Teeable(1);
+        var t = new Patient(1);
         t.must.have.property('pipe');
         t.pipe.must.be.a.function();
         t.writable.must.be.true();
@@ -67,7 +67,7 @@ describe('TeeableStream', function()
 
     it('wraps pipe()', function(done)
     {
-        var t = new Teeable(1);
+        var t = new Patient(1);
         t.must.have.property('pipeAndCount');
         t.pipeAndCount.must.be.a.function();
         t.pipeAndCount.must.eql(t.pipe);
@@ -77,7 +77,7 @@ describe('TeeableStream', function()
 
     it('pipes data through to a single destination', function(done)
     {
-        var tee = new Teeable(1);
+        var tee = new Patient(1);
         var input = fs.createReadStream('./LICENSE');
         input.pause();
         var output = new TestStream();
@@ -96,7 +96,7 @@ describe('TeeableStream', function()
 
     it('pipes data through to two destinations', function(done)
     {
-        var tee = new Teeable(2);
+        var tee = new Patient(2);
         var input = fs.createReadStream('./LICENSE');
         input.pause();
         var out1 = new TestStream();
@@ -121,7 +121,7 @@ describe('TeeableStream', function()
 
     it('pipes data through to several destinations', function(done)
     {
-        var tee = new Teeable(4);
+        var tee = new Patient(4);
         var input = Request.get(kitten);
         input.pause();
 
@@ -154,7 +154,7 @@ describe('TeeableStream', function()
 
     it('handles PassThrough streams incoming', function(done)
     {
-        var tee = new Teeable(1);
+        var tee = new Patient(1);
         var input = new stream.PassThrough();
         var output = new TestStream();
 
