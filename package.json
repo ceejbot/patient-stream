@@ -1,0 +1,23 @@
+{
+  "name": "teeable-stream",
+  "version": "0.0.0",
+  "description": "a pass-through stream that tees itself",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -v -c -t 90 test.js"
+  },
+  "keywords": [
+    "tee",
+    "stream"
+  ],
+  "author": "C J Silverio",
+  "license": "ISC",
+  "dependencies": {
+    "readable-stream": "^1.0.27-1"
+  },
+  "devDependencies": {
+    "lab": "^3.2.1",
+    "must": "^0.12.0",
+    "request": "^2.36.0"
+  }
+}
