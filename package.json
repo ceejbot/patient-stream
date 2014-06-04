@@ -16,7 +16,9 @@
   },
   "keywords": [
     "tee",
-    "stream"
+    "stream",
+    "pausing",
+    "pipe"
   ],
   "license": "ISC",
   "main": "index.js",
