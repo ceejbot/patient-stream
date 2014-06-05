@@ -38,7 +38,7 @@ TestStream.prototype._write = function _write(chunk, encoding, callback)
 var scratch = './tmp.txt';
 var kitten = 'http://placekitten.com/200/300';
 
-describe('TeeableStream', function()
+describe('PatientStream', function()
 {
     it('demands a number in its constructor', function(done)
     {
