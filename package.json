@@ -1,7 +1,7 @@
 {
   "name": "patient-stream",
   "description": "a pass-through stream that pauses while you pipe",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "C J Silverio",
   "bugs": {
     "url": "https://github.com/ceejbot/patient-stream/issues"
